@@ -1,6 +1,6 @@
 Kindle
 
-A simple web server to control lights and display weather and sensor data and control light.
+A simple web server to control lights and display weather and sensor data.
 
 ## Features
 

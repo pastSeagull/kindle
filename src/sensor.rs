@@ -5,8 +5,6 @@ use std::error::Error;
 use std::sync::{Arc, RwLock};
 use std::time::SystemTime;
 
-const TARGET_UUID: &str = "66831b50-1daf-180a-729c-4ecebfbd146b";
-
 #[derive(Debug, Clone, Copy, serde::Serialize)]
 pub struct SensorData {
     pub temp: f64,
@@ -26,14 +24,17 @@ pub async fn fetch_sensor_data_once(
         .ok_or("No Bluetooth adapter found")?;
 
     central.start_scan(ScanFilter::default()).await?;
-    println!("=== Scanning for Sensor ({}) ===", TARGET_UUID);
+    println!(
+        "=== Scanning for Sensor ({}) ===",
+        crate::config::SENSOR_TARGET_UUID
+    );
 
     let mut events = central.events().await?;
 
     // Wait for the first valid event
     while let Some(event) = events.next().await {
         if let btleplug::api::CentralEvent::ServiceDataAdvertisement { id, service_data } = event {
-            if id.to_string() == TARGET_UUID {
+            if id.to_string() == crate::config::SENSOR_TARGET_UUID {
                 for (_, data) in service_data {
                     if let Some((temp, humi, batt)) = parse_atc(&data) {
                         let now = SystemTime::now()

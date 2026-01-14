@@ -1,25 +1,6 @@
 Kindle
 
-A simple web server to control lights and display weather and sensor data.
-
-## Features
-
-- Control lights
-- Display weather and sensor data
-- Schedule sensor scans
-- Display weather and sensor data in a web interface
-
-## Installation
-
-```bash
-cargo install kindle
-```
-
-## Usage
-
-```bash
-kindle
-```
+A simple web server to control lights, display weather, and show data from Xiaomi temperature and humidity sensors.
 
 ## Configuration
 

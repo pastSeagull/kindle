@@ -4,7 +4,7 @@ A simple web server to control lights and display weather and sensor data.
 
 ## Features
 
-- Control Xiaomi lights
+- Control lights
 - Display weather and sensor data
 - Schedule sensor scans
 - Display weather and sensor data in a web interface
